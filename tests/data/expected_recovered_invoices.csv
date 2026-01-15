@@ -1,0 +1,11 @@
+invoice_id,contract_id,line_description,quantity,unit,unit_price,amount,source_clause,confidence,explainability,status
+inv_demo_001,ctr_demo_001,Senior Consultant - Project kickoff meeting,4,hour,200,800,c1_senior_rate,0.95,Derived from timesheet TS-2025-001 using rate card clause,draft
+inv_demo_001,ctr_demo_001,Senior Consultant - Requirements gathering,8,hour,200,1600,c1_senior_rate,0.95,Derived from timesheet TS-2025-002 using rate card clause,draft
+inv_demo_001,ctr_demo_001,Junior Consultant - Documentation review,6,hour,125,750,c1_junior_rate,0.92,Derived from timesheet TS-2025-003 using rate card clause,draft
+inv_demo_001,ctr_demo_001,Senior Consultant - Architecture design,10,hour,200,2000,c1_senior_rate,0.95,Derived from timesheet TS-2025-004 using rate card clause,draft
+inv_demo_001,ctr_demo_001,Technical Specialist - System analysis,8,hour,175,1400,c1_tech_rate,0.93,Derived from timesheet TS-2025-005 using rate card clause,draft
+inv_demo_001,ctr_demo_001,Project Management - Sprint planning,4,hour,150,600,c1_pm_rate,0.94,Derived from timesheet TS-2025-006 using rate card clause,draft
+inv_demo_001,ctr_demo_001,Phase 1 Milestone - Discovery and Planning,1,fixed,20000,20000,c2_milestone_1,0.97,Milestone payment triggered by completion event MILE-001,draft
+inv_demo_001,ctr_demo_001,Senior Consultant - Implementation phase begins,6,hour,200,1200,c1_senior_rate,0.95,Derived from timesheet TS-2025-007 using rate card clause,draft
+inv_demo_001,ctr_demo_001,Technical Specialist - Development work,12,hour,175,2100,c1_tech_rate,0.93,Derived from timesheet TS-2025-008 using rate card clause,draft
+inv_demo_001,ctr_demo_001,Travel expense - Client site visit (with 10% admin fee),1,expense,495,495,c4_expenses,0.88,Expense reimbursement with 10% admin fee per clause c4,draft

@@ -1,0 +1,153 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: crafta
+          POSTGRES_PASSWORD: crafta
+          POSTGRES_DB: crafta_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+
+      - name: Run linting
+        run: |
+          cd backend
+          pip install black isort mypy
+          black --check .
+          isort --check .
+
+      - name: Run tests
+        env:
+          DATABASE_URL: postgresql://crafta:crafta@localhost:5432/crafta_test
+          SECRET_KEY: test-secret-key
+          ENCRYPTION_KEY: test-encryption-key-32bytes
+        run: |
+          cd backend
+          pytest tests/ -v --cov=app --cov-report=xml
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./backend/coverage.xml
+
+  frontend-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Run linting
+        run: |
+          cd frontend
+          npm run lint
+
+      - name: Run tests
+        run: |
+          cd frontend
+          npm test -- --passWithNoTests
+
+      - name: Build
+        run: |
+          cd frontend
+          npm run build
+
+  agent-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          cd agents
+          pip install -r requirements.txt
+
+      - name: Run agent tests
+        run: |
+          cd agents
+          python -c "from parse_contract import ContractParser; print('Parser OK')"
+          python -c "from derive_invoice_lines import InvoiceDerivationEngine; print('Derivation OK')"
+
+  integration-test:
+    runs-on: ubuntu-latest
+    needs: [backend-test, frontend-test, agent-test]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install agent dependencies
+        run: |
+          pip install -r agents/requirements.txt
+
+      - name: Run demo script
+        run: |
+          python agents/run_demo.py \
+            --contract tests/data/sample_contract_text.txt \
+            --events tests/data/sample_workevents.csv \
+            --output test_outputs/
+
+      - name: Verify outputs
+        run: |
+          ls -la test_outputs/
+          test -f test_outputs/recovered_invoices.csv
+          test -f test_outputs/executive_summary.txt
+          test -f test_outputs/audit_snapshot.json
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: demo-outputs
+          path: test_outputs/

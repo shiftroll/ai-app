@@ -1,0 +1,69 @@
+MASTER SERVICES AGREEMENT
+
+This Master Services Agreement ("Agreement") is entered into as of January 1, 2026
+("Effective Date") by and between:
+
+ACME Services LLC, a Delaware limited liability company ("Vendor")
+and
+BlueCo Inc., a California corporation ("Client")
+
+ARTICLE 1: SERVICES AND RATES
+
+1.1 Consulting Services
+Vendor shall provide consulting services to Client at the following rates:
+- Senior Consultant: Two Hundred US Dollars ($200.00) per hour
+- Junior Consultant: One Hundred Twenty-Five US Dollars ($125.00) per hour
+- Technical Specialist: One Hundred Seventy-Five US Dollars ($175.00) per hour
+
+1.2 Project Management
+Project management services shall be billed at a fixed rate of One Hundred Fifty
+Dollars ($150.00) per hour.
+
+ARTICLE 2: MILESTONES AND DELIVERABLES
+
+2.1 Phase 1: Discovery and Planning
+Upon completion and Client acceptance of Phase 1 deliverables, Client shall pay
+Vendor a milestone payment of Twenty Thousand US Dollars ($20,000.00).
+
+2.2 Phase 2: Implementation
+Upon completion and Client acceptance of Phase 2 deliverables, Client shall pay
+Vendor a milestone payment of Thirty-Five Thousand US Dollars ($35,000.00).
+
+2.3 Phase 3: Go-Live Support
+Upon completion of go-live activities and transition to steady-state operations,
+Client shall pay Vendor a milestone payment of Fifteen Thousand US Dollars ($15,000.00).
+
+ARTICLE 3: PAYMENT TERMS
+
+3.1 Invoice Schedule
+Vendor shall invoice Client monthly for time and materials work performed in
+the prior month, and upon achievement of milestones.
+
+3.2 Payment Due
+Payment terms are Net 30 days from the date of invoice.
+
+3.3 Late Payment
+Late payments shall accrue interest at the rate of 1.5% per month.
+
+ARTICLE 4: EXPENSES
+
+4.1 Reimbursable Expenses
+Client shall reimburse Vendor for pre-approved travel and out-of-pocket expenses
+at cost plus a 10% administrative fee.
+
+ARTICLE 5: TERM AND TERMINATION
+
+5.1 Term
+This Agreement shall commence on the Effective Date and continue for a period
+of twelve (12) months unless earlier terminated.
+
+5.2 Termination
+Either party may terminate this Agreement with 30 days written notice.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the Effective Date.
+
+ACME Services LLC                    BlueCo Inc.
+By: _____________________           By: _____________________
+Name: John Smith                     Name: Jane Doe
+Title: Managing Partner              Title: Chief Financial Officer
+Date: January 1, 2026               Date: January 1, 2026
