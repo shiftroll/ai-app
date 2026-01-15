@@ -1,0 +1,11 @@
+event_id,date,description,units,unit_type,amount,external_ref
+we_001,2025-12-01,Senior Consultant - Project kickoff meeting,4,hour,800,TS-2025-001
+we_002,2025-12-05,Senior Consultant - Requirements gathering,8,hour,1600,TS-2025-002
+we_003,2025-12-08,Junior Consultant - Documentation review,6,hour,750,TS-2025-003
+we_004,2025-12-12,Senior Consultant - Architecture design,10,hour,2000,TS-2025-004
+we_005,2025-12-15,Technical Specialist - System analysis,8,hour,1400,TS-2025-005
+we_006,2025-12-18,Project Management - Sprint planning,4,hour,600,TS-2025-006
+we_007,2025-12-20,Phase 1 Completion - Discovery and Planning deliverables accepted,1,milestone,20000,MILE-001
+we_008,2025-12-22,Senior Consultant - Implementation phase begins,6,hour,1200,TS-2025-007
+we_009,2025-12-28,Technical Specialist - Development work,12,hour,2100,TS-2025-008
+we_010,2025-12-30,Travel expense - Client site visit,1,expense,450,EXP-001

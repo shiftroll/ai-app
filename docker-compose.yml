@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - crafta-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://crafta:crafta@db:5432/crafta
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=dev-secret-key-change-in-production
+      - ENCRYPTION_KEY=dev-encryption-key-32bytes!!!
+      - ENVIRONMENT=development
+      - DEBUG=true
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ./uploads:/app/uploads
+      - ./agents:/app/agents
+    networks:
+      - crafta-network
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=crafta
+      - POSTGRES_PASSWORD=crafta
+      - POSTGRES_DB=crafta
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U crafta"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - crafta-network
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - crafta-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  crafta-network:
+    driver: bridge
